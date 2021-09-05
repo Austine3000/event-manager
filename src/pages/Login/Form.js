@@ -17,16 +17,16 @@ const Form = (props) => {
           >
             <h1>Login</h1>
             <Input
-              id="email"
-              type="email"
+              id="username"
+              type="username"
               onChange={props.formik.handleChange}
-              name="email"
+              name="username"
               onBlur={props.formik.handleBlur}
-              title="Email"
-              value={props.formik.values.email}
+              title="Username"
+              value={props.formik.values.username}
               errors={props.formik.errors}
-              dataTestId="email"
-              ariaLabel="email"
+              dataTestId="username"
+              ariaLabel="username"
             />
             <Input
               id="password"
@@ -43,7 +43,7 @@ const Form = (props) => {
 
             <div className="auth-form-items sign-up-text">
               <Router history={history}>
-                <NavLink to="/">Sign Up?</NavLink>
+                <NavLink to="/signup">Sign Up?</NavLink>
               </Router>
             </div>
             <div className="auth-form-button-container">

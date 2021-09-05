@@ -22,6 +22,7 @@ const Login = () => {
       const user = {
         username: values.username,
         password: values.password,
+        phoneNumber: values.phoneNumber,
       };
       try {
         await login(user);

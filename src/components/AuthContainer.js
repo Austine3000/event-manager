@@ -21,8 +21,19 @@ const AuthContainer = styled.div`
       padding-bottom: 2rem;
 
       a {
-        color: #f0f0f0;
+        color: #000;
         text-decoration: none;
+      }
+    }
+
+    .auth-phone-number {
+      padding-bottom: 2rem;
+      label {
+        padding-bottom: 1rem;
+      }
+      input {
+        padding-top: 7.5px;
+        padding-bottom: 7.5px;
       }
     }
   }
