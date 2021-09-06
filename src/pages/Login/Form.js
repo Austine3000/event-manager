@@ -1,6 +1,6 @@
 import React from "react";
 import history from "../../utils/history";
-import AuthContainer from "../../components/AuthContainer";
+import FormContainer from "../../components/FormContainer";
 import { Container } from "react-bootstrap";
 import { Router, NavLink } from "react-router-dom";
 import { FullWidthButton } from "../../components/Button";
@@ -9,10 +9,10 @@ import { Input } from "../../components/Input";
 const Form = (props) => {
   return (
     <Container>
-      <AuthContainer>
-        <div className="auth-container">
+      <FormContainer>
+        <div className="form-container">
           <form
-            className="auth-main-container"
+            className="form-main-container"
             onSubmit={props.formik.handleSubmit}
           >
             <h1>Login</h1>
@@ -41,12 +41,12 @@ const Form = (props) => {
               ariaLabel="Password"
             />
 
-            <div className="auth-form-items sign-up-text">
+            <div className="form-items sign-up-text">
               <Router history={history}>
                 <NavLink to="/signup">Sign Up?</NavLink>
               </Router>
             </div>
-            <div className="auth-form-button-container">
+            <div className="form-button-container">
               <FullWidthButton
                 type="submit"
                 name="Login"
@@ -56,7 +56,7 @@ const Form = (props) => {
             </div>
           </form>
         </div>
-      </AuthContainer>
+      </FormContainer>
     </Container>
   );
 };

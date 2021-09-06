@@ -2,7 +2,7 @@ import React from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import history from "../../utils/history";
-import AuthContainer from "../../components/AuthContainer";
+import FormContainer from "../../components/FormContainer";
 import { Container, Row, Col } from "react-bootstrap";
 import { Router, NavLink } from "react-router-dom";
 import { FullWidthButton } from "../../components/Button";
@@ -11,10 +11,10 @@ import { Input } from "../../components/Input";
 const Form = (props) => {
   return (
     <Container>
-      <AuthContainer>
-        <div className="auth-container">
+      <FormContainer>
+        <div className="form-container">
           <form
-            className="auth-main-container"
+            className="form-main-container"
             onSubmit={props.formik.handleSubmit}
           >
             <h1>Sign Up</h1>
@@ -78,7 +78,7 @@ const Form = (props) => {
                 />
               </Col>
             </Row>
-            <Row className="auth-phone-number">
+            <Row className="form-phone-number">
               <label>Phone Number</label>
               <PhoneInput
                 country={"us"}
@@ -86,12 +86,12 @@ const Form = (props) => {
                 onChange={props.formik.handleChange}
               />
             </Row>
-            <div className="auth-form-items sign-up-text">
+            <div className="form-items sign-up-text">
               <Router history={history}>
                 <NavLink to="/login">Login?</NavLink>
               </Router>
             </div>
-            <div className="auth-form-button-container">
+            <div className="form-button-container">
               <FullWidthButton
                 type="submit"
                 name="Sign Up"
@@ -101,7 +101,7 @@ const Form = (props) => {
             </div>
           </form>
         </div>
-      </AuthContainer>
+      </FormContainer>
     </Container>
   );
 };

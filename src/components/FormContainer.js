@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const AuthContainer = styled.div`
-  .auth-container {
+const FormContainer = styled.div`
+  .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 
-    .auth-main-container {
+    .form-main-container {
       width: 100%;
       max-width: 30rem;
       padding: 2rem;
@@ -15,7 +15,7 @@ const AuthContainer = styled.div`
       border-radius: 0.8rem;
     }
 
-    .auth-form-items {
+    .form-items {
       display: flex;
       justify-content: flex-end;
       padding-bottom: 2rem;
@@ -26,7 +26,7 @@ const AuthContainer = styled.div`
       }
     }
 
-    .auth-phone-number {
+    .form-phone-number {
       padding-bottom: 2rem;
       label {
         padding-bottom: 1rem;
@@ -39,4 +39,4 @@ const AuthContainer = styled.div`
   }
 `;
 
-export default AuthContainer;
+export default FormContainer;
