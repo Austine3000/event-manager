@@ -2,7 +2,9 @@ import React from "react";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import EvenForm from "../../components/EvenForm";
+import { createEvent } from "./actions";
 import Validate from "./validate";
+import history from "../../utils/history";
 import Loading from "../../components/Loading";
 
 const CreateEvent = () => {
@@ -18,17 +20,18 @@ const CreateEvent = () => {
     onSubmit: async (values) => {
       setIsLoading(true);
 
-      const user = {
+      const user = JSON.parse(localStorage.user || "{}");
+
+      const events = {
+        id: Math.floor(Math.random() * 9999999999999999),
         name: values.name,
         date: values.date,
         description: values.description,
+        userId: user.id,
       };
-      try {
-      } catch (err) {
-        toast.error("An error occurred while submitting form");
-      } finally {
-        setIsLoading(false);
-      }
+      const response = createEvent(events);
+      toast.success(response.message);
+      history.push("/event/event-list");
     },
   });
   return (

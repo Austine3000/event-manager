@@ -7,16 +7,19 @@ const EventRoutes = [
     path: "/event/event-list",
     exact: "exact",
     component: EventList,
+    authRequired: true,
   },
   {
     path: "/event/create-event",
     exact: "exact",
     component: CreateEvent,
+    authRequired: true,
   },
   {
-    path: "/event/edit-event",
+    path: "/event/edit-event/:id",
     exact: "exact",
     component: EditEvent,
+    authRequired: true,
   },
 ];
 

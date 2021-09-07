@@ -16,20 +16,23 @@ const Login = () => {
       password: "",
     },
     validate: Validate,
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       setIsLoading(true);
 
       const user = {
         username: values.username,
         password: values.password,
       };
-      try {
-        await login(user);
+      const response = login(user);
 
-        history.push("/events");
-      } catch (err) {
-        toast.error("An error occurred while submitting form");
-      } finally {
+      if (response.status === 200) {
+        toast.success(response.message);
+
+        setIsLoading(false);
+        history.push("/event/event-list");
+      } else {
+        toast.error(response.message);
+
         setIsLoading(false);
       }
     },

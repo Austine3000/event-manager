@@ -9,7 +9,7 @@ const FormContainer = styled.div`
 
     .form-main-container {
       width: 100%;
-      max-width: 30rem;
+      max-width: 40rem;
       padding: 2rem;
       border: 1px solid #eee;
       border-radius: 0.8rem;
@@ -34,6 +34,7 @@ const FormContainer = styled.div`
       input {
         padding-top: 7.5px;
         padding-bottom: 7.5px;
+        width: 100%;
       }
     }
   }

@@ -1,15 +1,22 @@
-export const login = (payload) => {
-  try {
-    const response = {}
-    const token = response.headers["auth-token"];
-    const userPermission = JSON.stringify(response.data);
+export const signup = (payload) => {
+  let users = JSON.parse(localStorage.users || "[]");
 
-    localStorage.setItem("authToken", token);
-    localStorage.setItem("usergroup", JSON.stringify(payload.usergroup));
-    localStorage.setItem("userPermission", userPermission);
-
-    return response;
-  } catch (err) {
-    throw err;
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].username === payload.username) {
+      return {
+        message: "User already exists",
+        status: 409,
+      };
+    }
   }
+
+  users = [...users, payload];
+
+  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("user", JSON.stringify(payload));
+
+  return {
+    message: "User successfully created",
+    status: 200,
+  };
 };

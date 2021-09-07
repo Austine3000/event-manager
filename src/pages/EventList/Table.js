@@ -1,16 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-import { useTable } from "react-table";
-
-import makeData from "./makeData";
 
 const Styles = styled.div`
-  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .button {
+    border: 0px;
+  }
+
+  .button-success {
+    color: white;
+    background-color: green;
+  }
+
+  .create-button-container {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
 
   table {
     border-spacing: 0;
     border: 1px solid black;
-
+    width: 100%;
+    max-width: 40rem;
     tr {
       :last-child {
         td {
@@ -33,97 +49,60 @@ const Styles = styled.div`
   }
 `;
 
-function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data,
-  });
-
+function Table({ events, editEvent, handleShow }) {
   // Render the UI for your table
+
   return (
-    <table {...getTableProps()}>
+    <table>
       <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-            ))}
-          </tr>
-        ))}
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
       </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
-          prepareRow(row);
-          return row.cells.length > 0 ? (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-              })}
-            </tr>
-          ) : (
-            <p>No Event avaliable</p>
-          );
-        })}
+      <tbody>
+        {events.length > 0 ? (
+          events.map((event) => {
+            return (
+              <tr>
+                <td>{event.name}</td>
+                <td>{event.date}</td>
+                <td>{event.description}</td>
+                <td>
+                  <button onClick={() => editEvent(event.id)}>Edit</button>
+                  <button onClick={() => handleShow(event.id)}>Delete</button>
+                </td>
+              </tr>
+            );
+          })
+        ) : (
+          <p>No Event avaliable</p>
+        )}
       </tbody>
     </table>
   );
 }
 
-function App() {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Name",
-        columns: [
-          {
-            Header: "First Name",
-            accessor: "firstName",
-          },
-          {
-            Header: "Last Name",
-            accessor: "lastName",
-          },
-        ],
-      },
-      {
-        Header: "Info",
-        columns: [
-          {
-            Header: "Age",
-            accessor: "age",
-          },
-          {
-            Header: "Visits",
-            accessor: "visits",
-          },
-          {
-            Header: "Status",
-            accessor: "status",
-          },
-          {
-            Header: "Profile Progress",
-            accessor: "progress",
-          },
-        ],
-      },
-    ],
-    []
-  );
-
-  const data = React.useMemo(() => makeData(20), []);
-
-  console.log(data);
-
+function App(props) {
   return (
     <Styles>
-      <Table columns={columns} data={data} />
+      <div className="create-button-container">
+        <button
+          type="button"
+          onClick={props.goToCreateEvent}
+          className="button button-success"
+        >
+          {" "}
+          + Create Event
+        </button>
+      </div>
+      <Table
+        events={props.events}
+        editEvent={props.editEvent}
+        handleShow={props.handleShow}
+      />
     </Styles>
   );
 }

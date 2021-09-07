@@ -1,15 +1,21 @@
 export const login = (payload) => {
-  try {
-    const response = {}
-    const token = response.headers["auth-token"];
-    const userPermission = JSON.stringify(response.data);
+  let users = JSON.parse(localStorage.users || "[]");
 
-    localStorage.setItem("authToken", token);
-    localStorage.setItem("usergroup", JSON.stringify(payload.usergroup));
-    localStorage.setItem("userPermission", userPermission);
-
-    return response;
-  } catch (err) {
-    throw err;
+  for (let i = 0; i < users.length; i++) {
+    if (
+      users[i].username === payload.username &&
+      users[i].password === payload.password
+    ) {
+      localStorage.setItem("user", JSON.stringify(users[i]));
+      return {
+        message: "User successfully login",
+        status: 200,
+      };
+    }
   }
+
+  return {
+    message: "Invalid username or password",
+    status: 401,
+  };
 };

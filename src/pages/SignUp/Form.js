@@ -22,7 +22,7 @@ const Form = (props) => {
               <Col lg="6">
                 <Input
                   id="firstname"
-                  type="firstname"
+                  type="text"
                   onChange={props.formik.handleChange}
                   name="firstname"
                   onBlur={props.formik.handleBlur}
@@ -36,7 +36,7 @@ const Form = (props) => {
               <Col lg="6">
                 <Input
                   id="lastname"
-                  type="lastname"
+                  type="text"
                   onChange={props.formik.handleChange}
                   name="lastname"
                   onBlur={props.formik.handleBlur}
@@ -52,7 +52,7 @@ const Form = (props) => {
               <Col lg="6">
                 <Input
                   id="username"
-                  type="username"
+                  type="text"
                   onChange={props.formik.handleChange}
                   name="username"
                   onBlur={props.formik.handleBlur}
